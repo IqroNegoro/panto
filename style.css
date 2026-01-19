@@ -1,0 +1,822 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-UltraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/***
+    The new CSS reset - version 1.11.3 (last updated 25.08.2024)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+    - The "html" element is excluded, otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
+ */
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Fix mobile Safari increase font-size on landscape mode */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+button {
+    cursor: pointer !important;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a, button {
+    cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu, summary {
+    list-style: none;
+}
+
+/* Firefox: solve issue where nested ordered lists continue numbering from parent (https://bugzilla.mozilla.org/show_bug.cgi?id=1881517) */
+ol {
+    counter-reset: revert;
+}
+
+/* For images to not be able to exceed their container */
+img {
+    max-inline-size: 100%;
+    max-block-size: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+    border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input, textarea {
+    -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+    white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+    -webkit-appearance: revert;
+    appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+    all: revert;
+    box-sizing: border-box;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+    color: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+    display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
+    -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+    -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+    all: revert;
+    box-sizing: border-box;
+}
+
+/* Remove details summary webkit styles */
+::-webkit-details-marker {
+    display: none;
+}
+
+body {
+    font-family: 'Gilroy', sans-serif;
+    color: #1E1E1E;
+}
+
+.container {
+   width: 100%;
+   min-height: 100dvh;
+   display: flex;
+   flex-direction: column;
+}
+
+ul {
+    list-style: none;
+}
+
+
+
+.hero {
+    & .nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    color: white;
+
+    & h1 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    & ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+
+        & li:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+
+    & button {
+        color: white;
+        position: relative;
+
+        & i {
+            font-size: 2rem;
+        }
+
+        & div {
+            position: absolute;
+            right: -0.25rem;
+            top: 0.5rem;
+            background-color: #E58411;
+            padding: 0 0.25rem;
+            border-radius: 100%;
+        }
+    }
+}
+
+    width: 100%;
+    min-height: 1084px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    background-image: url('/images/hero_bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+
+    & h1 {
+        font-size: 4rem;
+        line-height: 5rem;
+        font-weight: 700;
+    }
+
+    & p {
+        font-weight: 400;
+        opacity: 80%;
+        font-size: 1.25rem;
+        line-height: 2rem;
+    }
+
+    & .search {
+        display: flex;
+        align-items: center;
+        padding: 0.25rem;
+        margin-top: 1rem;
+        padding-left: 0.75rem;
+        border-radius: 2rem;
+        border: 1px solid white;
+        background-color: rgba(255, 255, 255, 0.1);
+        max-width: max-content;
+
+        
+        & input {
+            background-color: transparent;
+            outline: none;
+            color: white;
+            text-align: left;
+            width: 16rem;
+            padding: 0.5rem 0;
+
+            &::placeholder {
+                opacity: 80%;
+                font-weight: 100;
+            }
+        }
+
+        & button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #E58411;
+            border-radius: 100%;
+            padding: 0.75rem;
+            max-width: max-content;
+            max-height: max-content;
+        }
+    }
+}
+
+.about {
+    display: flex;
+    gap: 3rem;
+    padding: 6rem;
+
+    & h2 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        white-space: nowrap;
+    }
+
+    & div {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-row: 1;
+        gap: 3rem;
+        
+        & div {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            & h3 {
+                font-weight: 700;
+                font-size: 1.5rem;
+            }
+
+            & h4 {
+                line-height: 1.5rem;
+                word-spacing: 0.25rem;
+                opacity: 80%;
+            }
+
+            & button {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                font-size: 0.85rem;
+                color: #E58411;
+            }
+        }
+    }
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 6rem;
+    background-color: #F7F7F7;
+
+    & h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+
+    & .options {
+        padding: .25rem;
+        display: flex;
+        gap: 0.5rem;
+        background-color: #EEEEEE;
+        border-radius: 2rem;
+
+        & button {
+            padding: 1rem 1.5rem;
+            font-size: 1.25rem;
+            border-radius: 2rem;
+            color: gray;
+            
+            &:first-child {
+                color: #1E1E1E;
+                background-color: white;
+                font-weight: 500;
+            }
+        }
+    }
+
+    & .items {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-row: 1;
+        gap: 2rem;
+        margin-top: 4rem;
+
+        & > div {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 1rem;
+
+            & img {
+                width: 100%;
+                transform: translateY(-30%);
+            }
+
+            & img:last-child {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-90%);
+            }
+
+            & > div {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+
+                & span {
+                    color: #8D8D8D;
+                }
+
+                & p {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: #0D1B39;
+                }
+
+                & div i.bx {
+                    color: #F6B76F;
+    
+                }
+            }
+        }
+
+        & .price {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            & span {
+                color: #0D1B39;
+                font-weight: 600;
+                font-size: 1.25rem;
+
+                &:first-letter {
+                    font-size: 0.75rem;
+                    vertical-align: super;
+                }
+            }
+
+            & button {
+                max-width: max-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.75rem;
+                font-size: 1.5rem;
+                border-radius: 100%;
+                background-color: #0D1B39;
+                color: white;
+            }
+        }
+    }
+
+    & > p {
+        font-weight: 500;
+        color: #E58411;
+    }
+}
+
+.experiences {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    gap: 6rem;
+    padding: 6rem 6rem 6rem 0;
+
+    & img {
+        width: 64rem;
+        position: relative;
+        z-index: 10;
+        border-radius: 0 1rem 1rem 0;
+        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    & .img {
+        position: relative;
+
+        & > div.overlay-1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: -3rem;
+            left: -7rem;
+            padding: 2rem;
+            background-color: #F7F7F7;
+            border-radius: 1rem;
+        }
+
+        & > div.overlay-2 {
+            z-index: -10;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 3rem;
+            left: 2rem;
+            padding: 2rem;
+            background-color: #F7F7F7;
+            border-radius: 1rem;
+        }
+    }
+
+    & div {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    & div span {
+        color: #E58411;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+    }
+    
+    & div h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+    }
+
+    & div p {
+        line-height: 2rem;
+    }
+
+    & div button {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.85rem;
+        color: #E58411;
+    }
+}
+
+.materials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    gap: 6rem;
+    padding: 6rem 0 6rem 6rem;
+
+    /* & img {
+        position: relative;
+        z-index: 10;
+    } */
+
+    & .img {
+        display: grid;
+        grid-template-areas: 
+        "img-1 img-3"
+        "img-2 img-3";
+        align-items: center;
+        position: relative;
+
+        & img {
+            box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 1.5rem;
+        }
+        
+        & img.img1 {
+            grid-area: img-1;
+        }
+
+        & img.img2 {
+            grid-area: img-2;
+        }
+
+        & img.img3 {
+            grid-area: img-3;
+            width: 100rem;
+            align-self: self-end;
+            object-fit: cover;
+            border-radius: 1.5rem 0 0 1.5rem;
+        }
+
+        & > div.overlay-1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: -3rem;
+            left: -7rem;
+            padding: 2rem;
+            background-color: #F7F7F7;
+            border-radius: 1rem;
+        }
+
+        & > div.overlay-2 {
+            z-index: -10;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 3rem;
+            left: 2rem;
+            padding: 2rem;
+            background-color: #F7F7F7;
+            border-radius: 1rem;
+        }
+    }
+
+    & div {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    & div span {
+        color: #E58411;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+    }
+    
+    & div h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+    }
+
+    & div p {
+        line-height: 2rem;
+    }
+
+    & div button {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.85rem;
+        color: #E58411;
+    }
+}
+
+.testimonials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 6rem;
+
+    & > span {
+        color: #E58411;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+    }
+    
+    & > h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    & > div {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-row: 1fr;
+        gap: 2rem;
+        
+        & > div {
+            width: 100%;
+            height: 29rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border-radius: 1rem;
+            padding: 1rem;
+            overflow: hidden;
+            box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
+            
+            & > div {
+                background-color: white;
+                border-radius: 1rem;
+
+                & > div {
+                    display: flex;
+                    flex-direction: column;
+                    /* justify-content: center; */
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0 2rem;
+                    transform: translateY(-10%);
+    
+                    & .profile_picture  {
+                        background-color: white;
+                        padding: 0.5rem;
+                        border-radius: 50%;
+                    }
+    
+                    & .name {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 2rem !important;
+                        text-align: center;
+    
+                        & h3 {
+                            font-weight: 800;
+                            font-size: 1.2rem;
+                        }
+    
+                        & p {
+                            margin-top: 0.25rem;
+                            font-weight: 400 !important;
+                            opacity: 60%;
+                            font-size: 0.75rem;
+                        }
+                    }
+
+                    & .sentence {
+                        margin: 1rem 0;
+                        text-align: center;
+                    }
+
+                    & .star {
+                        display: flex;
+                        gap: 0.5rem;
+                        color: #F6973F;
+
+                        & i:last-child {
+                            opacity: 30%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer {
+    background-color: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    gap: 12rem;
+    padding: 6rem;
+
+    & .container-1 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: space-between;
+        gap: 4rem;
+
+        & div {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            & h3 {
+                font-size: 2rem;
+                font-weight: 700;
+            }
+
+            & ul {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            & ul li {
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            & ul li:first-child {
+                color: #F6973F;
+            }
+        }
+    }
+
+    & .container-2 {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-between;
+        gap: 4rem;
+
+        & span {
+            font-weight: 500;
+            color: gray !important;
+        }
+
+        & ul {
+            font-weight: 500;
+            display: flex;
+            gap: 3rem;
+        }
+    }
+}
